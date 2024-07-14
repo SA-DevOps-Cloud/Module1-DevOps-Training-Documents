@@ -1,0 +1,295 @@
+~~~~~~~~~~~~~~~~~~~~~~~
+Day 2: 14th July 2024
+~~~~~~~~~~~~~~~~~~~~~~~			
+		
+	Introduction to Cloud Platform 
+	
+	AWS Free Tier Account 
+	
+	Login to AWS Console
+	
+	Create EC2 Instances(Virtual Machines)
+	
+	Linux 
+	
+
+
+	On-premises Environments
+	
+		Servers,Storage,Networking,Dbase
+	
+		Software - Cost 
+		
+	Cloud Environments :::
+	
+		Core Linux Administration :::
+		
+			Linux Machine 
+			
+			Hypervisor & VMs - 16 GB of RAM 2CPU 
+			
+			
+			Create AZURE / AWS - Account 
+			
+				Create VMs 
+				
+				
+			Telecomm - SP1 -- Introduce a new service to their customers -> ASAP! IT Services
+								Build Servers/Test Servers/Deployment servers
+								
+			SP2 
+			
+			
+	
+	AWS Free Tier Account -- https://aws.amazon.com/console/
+	
+		Active Email_ID & Mobile Number 
+		Active Credit/Debit Card - enabled with International Trancsaction
+		12 Months free tier account - 
+		
+		
+	
+	Login to AWS Console
+	
+	Create EC2 Instances(Virtual Machines)
+	
+	Linux 
+	
+
+	AWS Account Creation Process!
+	
+	https://aws.amazon.com/console/
+	
+	
+	Login to AWS Console :::
+	
+		- Login as a root user (Using Email_ID & Password)		# Default
+		
+			(or)
+			
+		- IAM User 												# Not Now!
+			
+	In AWS Cloud platform :::
+
+		Regions 	(Locations)
+		
+			Availability Zones (Data Centers)
+				
+				
+	Upon Login to AWS Console 
+		- Choose set AWS Region.
+		- Create the resources within that regions
+		
+		
+	Billing Management :::
+	
+		Free Tier ::
+		
+		
+	Create EC2 Instances(Virtual Machines) :::
+	
+	Select EC2 Service 
+	
+	From EC2 Dashboard - Select Launch Instance
+	
+	
+	How to Access the remote service?
+	
+	www.gmail.com
+	
+		- Web Browser 
+		- Authentication - UserName & Password 
+		
+		
+	AWS Platform 
+		EC2 Instance (Virtual Machine) 
+		
+		- SSH Connection Protocol
+		
+		- Authentication Types :
+			- Password Based Authentication
+			- Token Based Authentication
+			- Key Based Authentication
+				- Public key and private key 
+			- Passwordless Authentication
+	
+	
+		1 VM == 750 Hrs/Month
+
+		10 VMs == 75 Hrs/Month
+		
+		It is always recommended to STOP the EC2 Instance if it is not in use!
+	
+	
+	AMI 
+	
+		Choose : Ubuntu v22.04 LTS AMI
+		
+		
+		Windows 
+		Linux 
+		Mac 
+		
+		
+		Linux based AMI :::
+		
+			Linux Open-Source Operating System :
+				
+				UNIX OS
+				
+				- Linux Distribution 
+										Package Manager (Used to Install/Uninstall/Upgrade the packages)
+					Debian/Ubuntu			apt-get / apt 
+					Centos/RHEL				yum 
+					Fedora					dnf
+					Previous version of Fedora uses yum package manager
+					
+					
+				Window OS --> 
+				
+					- Windows Installer! -> Package Manager for Windows OS 
+											- Used to Install/Uninstall/Upgrade the packages ad
+
+
+
+
+		Created the Instance :::
+		
+		Running 
+		
+			Instance ID (Uniquely Generated)
+			
+			Name/Tag (We assign)
+			
+			Host Name :
+
+				Public IP Address	(Will Change everytime we restart the Instance)
+
+				Private IP Address 	(Constant IP Address, exist till you terminate the Instance)
+
+
+
+	How to Connect to  EC2 Instances :::
+	
+
+		- Authentication Types :
+			- Password Based Authentication
+			- Token Based Authentication
+			- Key Based Authentication
+				- Public key and private key 
+			- Passwordless Authentication	
+			
+			
+		Host_Name 
+		User_Name 
+		Credentials 
+	
+		-	EC2 Instance Connect (Thru Browser - AWS Console) 
+		
+		-	SSH Agents :	(Tool installed in the client machine to access Linux VMs)
+				MobaXterm	- 	https://mobaxterm.mobatek.net/download.html 
+							https://mobaxterm.mobatek.net/download-home-edition.html - Choose Installer Edition
+							Download *.zip
+							Extract & run the exec file
+		
+							Open MobaXterm Tool 
+							Select Session - Setting
+								- Remote Host :Public IP Address 
+								- User Name : ubuntu
+								- Advanced Setting 
+									- Choose Private key check box 
+										- browse thru the *.pem from downloads folder
+				Putty 
+			
+		-	Terminal :		# Ubuntu/Mac Users 
+		
+		
+		Create AWS Account 
+		
+		Login to AWS Console as a root 
+		
+		Goto EC2 Instance Dashboard 
+		
+		Create EC2 Instance 
+			- Create Key Pair 
+			
+		Connect to EC2 Instance using EC2 Instance Connect (Thru Browser - AWS Console) 
+			
+		
+Fundamentals of Linux Operating System ::
+
+Overview of Linux
+Linux Architecture
+Linux Distributions
+Basic Linux Commands
+File Permission Management
+User Creation
+Shell Scripts
+SSH and VI Utility - Remote Server Access
+			
+			
+
+	Operating System ::
+	
+		What is an Operating System ???
+		
+			- Is an interface between the user application and the Hardware.
+			
+		Windows
+		Linux 
+		Mac 
+		
+		Android 
+		
+		High End computation Servers 
+		
+			- Reliable OS
+			- Linux Based OS 
+			
+			OS Architecture ::
+			
+				Linux - Kernel is the core of Linux 
+				
+				Manage the Underlying Hardware, User Applications, External Resources,  
+				
+				It create the process 
+				Each and every process runs in its own address space/volume 
+				Dedicated/Isolated path
+				
+					OS Kernel 
+						Namespace 
+						Control Group 
+						
+						
+				Executed as Command Line Utilities 
+				
+				Traditional Linux are CUI (Command User Interface) Based  
+				
+				Windows are GUI (Graphical User Interface) based  
+		
+		Linux Distribution :::
+			
+			AWS Cloud --> Ubuntu v22.04			===> 	Azure --> Ubuntu v22.04
+			
+			
+			
+			- Linux Distribution 
+									Package Manager (Used to Install/Uninstall/Upgrade the packages)
+				Debian/Ubuntu			apt-get / apt 
+				Centos/RHEL				yum 
+				Fedora					dnf
+				Previous version of Fedora uses yum package manager	
+
+				All the package Manager should be executed as a root user.
+				
+				
+			
+		Basic Linux Commands :::
+		
+		
+		sudo -i			# To elevate the access to root level
+		hostname -i
+		clear
+		ls 
+		pwd 			# present working directory
+		
