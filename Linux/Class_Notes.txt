@@ -631,3 +631,445 @@ SSH and VI Utility - Remote Server Access
 				Re-Type New Password : 								# Is a Hidden field re-type & confirm password 
 		
 		
+~~~~~~~~~~~~~~~~~~~~~~~
+Day 4: 21st July 2024
+~~~~~~~~~~~~~~~~~~~~~~~		
+
+	SSH Key Based Authentication
+		- with some real time scenarios
+
+	Handle Remote Server and Interact with Multiple Remote Servers 
+		- Using Key Based Authentication
+		
+	Package Installation Procedures ****
+	
+	Process Automation using Shell Scripts 
+
+
+Create Linux Users :::
+
+	Ubuntu :::
+	
+		useradd devuser2 -s /bin/bash -m -d /home/devuser2
+
+	RHEL / Amazon Linux :::
+	
+	
+	visudo 			# command is used to setup additional features to any linux user.
+	
+	The Default Authentication Type :
+	
+		Key Based Authentication
+		
+		Password Based Authentication 
+
+	#Goto:
+
+	vi /etc/ssh/sshd_config
+
+	#Enable Password Authentication to Yes and save the file
+	#Execute Below command to update the changes.
+
+	service sshd reload
+
+	SSH Key Based Authentication
+		- with some real time scenarios		# Dynamic ssh-key creation
+		
+			- create a keypair 				ssh-keygen  # create .ssh
+			- connect to that machine 
+			- delete the keypair 			rm -rf .ssh
+
+
+	SSH Key Pair :
+	
+		public key 
+		
+		private key 
+		
+		authorized_keys  # Is a copy of the public key
+
+
+	Launch :
+		Create Key Pair 
+			*.pem 			# Private Key		# Downloaded to local machine 
+			
+		mobaxterm :: private 
+	
+Server :			USRDATA AS START-UP TASK 
+
+useradd sadevopsadmin -s /bin/bash -m -d /home/sadevopsadmin
+
+#useradd sadevopsadmin
+
+su - sadevopsadmin	
+
+ssh-keygen -t ecdsa -b 521										#ubuntu 22.04 or higher version of ubuntu				
+
+ls ~/.ssh 
+
+#You should see following two files:
+
+#id_ecdsa - private key
+#id_ecdsa.pub - public
+
+ssh sadevopsclient@172.31.35.74
+
+sadevopsclient ALL=(ALL) NOPASSWD: ALL
+
+
+Client :::
+
+useradd sadevopsclient -s /bin/bash -m -d /home/sadevopsclient
+
+#useradd sadevopsclient
+
+su - sadevopsclient
+
+ls -a 
+
+mkdir .ssh 
+
+cd .ssh
+
+vi authorized_keys
+
+# paste the content of sadevopsadmin's public key
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+vi authorized_keys
+
+#paste the id_ecdsa.pub of devopsadmin user from controller machine to authorized_keys file in Ansible Node1 
+
+chmod 600 /home/ansibleadmin/.ssh/*
+
+
+# Use the private IP addr. of AN1 and AN2
+
+#ssh-copy-id ansibleadmin@172.31.36.144
+#ssh-copy-id ansibleadmin@172.31.33.217
+
+ssh ansibleadmin@172.31.5.190
+ssh ansibleadmin@172.31.6.228
+
+
+
+
+
+Package Installation Procedures **** ::
+	
+	1. yum update 
+	2. install the req. package 
+	3. 
+
+	1. Name & What type of package it is ?
+	
+		- Install all the pre-requisites (if required)
+		- Install the actual package 
+		- Post Installation Activities (if required)
+		
+		
+	software/packages can be executed as task or as a service ?
+	
+		git 		third party tool 
+			download and install in any node/machine 
+			
+		
+		tree 
+		
+		shell script 
+		
+			./script.sh 			# Manual execution 
+			crontab 				# It is used to schedule the script to run
+			
+			
+		
+		All service package should be started upon installation.
+		
+	
+	Deployment Server:
+	
+	Environments :::
+	
+		Non-Prod Environments							=====>				Production Environments
+		
+			Dev Environment
+			Build Environment
+			Test Environments
+				QA  - Quality Assurance Testing 
+				UAT - User Acceptance Testing			----->					Production Server(s) - 24/7
+	
+		Target/Hosted/Deployment server				Hardware - Computing Environment
+				- Install some web application servers 		 - Software 
+						- Tomcat 
+						- Apache
+						- nginx
+						
+			QA 			
+			UAT 
+			Prod 
+
+		Server :
+		
+			To Install Tomcat Web Application Server :
+			
+				1. Install jdk 
+				2. Install Tomcat 
+				3. Start Tomcat 
+				
+			To Install Jenkins :
+			
+				1. Install jdk, Update jenkins Repos 
+				2. Install Jenkins 
+				3. Start Jenkins 
+				
+
+
+Process Automation using Shell Scripts :::
+
+	Linux Shell Scripting :::
+
+	Programming Language :::
+
+		- Are used by the Developers to create business applications 
+		- java/python/.net framework,......
+		
+		- client side scripting ::
+		
+		
+	Scripting Language :::
+	
+		- Process Automation :::
+		- shell/groovy/yaml/python scripting languages 
+		
+	Programming or scripting ???
+	
+		Objective?
+		
+		Data : piece of information ?
+		
+		information : ? 
+		
+		Data --> Is just a raw fact. Without any meaning!
+		
+		Information --> Is a processed Data is called as information 
+		
+		INDIA 				--> raw fact 
+		
+		INDIA is a Country 	--> Information
+		
+	Shell Scripts :
+
+		Collection of linux shell commands 
+		
+		
+		
+	echo "Hello" 
+	
+	data :
+	
+	variable name 
+	
+	Data Type 
+	
+	int x = 5 
+	
+	char y = 's'
+	
+	String z = "asdf"
+	
+	x = 5
+
+	
+	Array x[10] = {0,1,2,3,4,5,6,7,8,9}
+	
+	Conditional Statements :
+	
+	if condition statements
+	
+	switch case statements 
+	
+	Operators 
+	
+	
+	a = 10
+	
+	b = 5 
+	
+	
+	Comparison operator 
+	
+	if (a > b)
+	{
+		echo "a is greater"
+	}	
+	
+	Looping statement :	to iterate the task 
+	
+	x = 5
+
+		echo "${x}"
+		
+	x[4] = {1,2,3,4}
+	
+	index starts with 0 
+	
+	x[0]	==> 1
+	x[1]	==> 2
+	x[3]	==> 3
+	x[3]	==> 4
+	
+	x[4]	==> Out or Range error 
+	
+	for loop
+	while loop
+	do while 
+	
+		for(i=0;i<n;i++)
+		{
+			echo $x
+		}
+		
+		1
+		2
+		3
+		4
+		
+	File Concepts :	--> Sequential 
+
+		File Handling 
+			- create 
+			- write 
+			- update 
+			- delete 
+	
+	Database Handling :
+		Tables 
+		
+	
+	ETL 
+	
+	Handle remote servers to promote the data or files 
+	
+	Automate the server provioning and configuration using scripts & promote the files 
+	
+	Requirement Analysis ::
+	
+	Design Phase ::
+	
+	
+	Algorithms : 	It is just a step by step process to achieve any task 
+					It is written in a common use understandable languages
+					It is not specific to any programming or scripting languages 
+					
+	1. Calculate and print the sum of two numbers ?	
+
+		int a, b;
+		get a, b 
+		c = a + b 
+		print c 
+		
+		5 + 5 = ?
+		
+		100 + 1000 = ?
+			
+		12.5 + 12.5 = ?
+		
+		11111111111111111 + 222222222222222222222 = ?
+	
+	
+	Psudo Code :	shell 
+	
+		int a, b;
+		get a, b 
+		c = a + b 
+		echo c	
+	
+	Coding & Development 
+	
+	Testing 
+	
+	Implementation 
+	
+	
+	shell scripting ::
+	
+	syntax of shell scripting
+
+Unix OS 
+
+sh prompt 
+
+Linux OS 
+
+bash prompt 
+
+	shell script file name should be saved as *.sh
+
+#!/bin/bash
+	
+	
+#!/bin/bash
+sudo yum update
+sudo yum install ruby
+sudo yum install wget
+sudo yum install java-11-amazon-corretto
+sudo yum install java-11-amazon-corretto-devel
+sudo yum -y install tomcat8	
+	
+	
+	
+Scenario 1:
+
+	Create/Setup a Build Server ::	Java 
+	
+		javatoolssetup.sh
+		
+		sudo apt update 
+		sudo apt install jdk11
+		sudo apt install maven 
+	
+	Create/Setup a Deployment Server ::
+	
+		appdeploysetup.sh 			# only on debian/ubuntu/rhel/centos
+		
+		
+		if [os_distri == ubuntu -o os_distri == debian ]
+		
+			sudo apt update 
+			sudo apt install jdk17 
+			sudo apt install tomcat8 
+		
+		elif [os_distri == rhel -o os_distri == centos ]
+	
+		
+			sudo yum update 
+			sudo yum install jdk17 
+			sudo yum install tomcat8 
+		
+		fi
+		
+		
+	while loop 		/  for loop 
+		- This will first check for the condition.
+		- If the condition satisfies, it will execute the given task 
+		- else it will not proceed 
+	
+	do-while loop
+		- first it execute a task atleast once 
+		- then check for condition, to execute further 
