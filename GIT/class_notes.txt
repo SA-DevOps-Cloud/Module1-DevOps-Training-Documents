@@ -1,0 +1,653 @@
+~~~~~~~~~~~~~~~~~~~~~~~
+Day 5: 27th July 2024
+~~~~~~~~~~~~~~~~~~~~~~~			
+	
+	Version Control System using GIT 
+		
+	Source code repository
+	
+	Developer:
+	
+	Web Applications:
+	
+	index.html 
+	
+	<html>
+	---
+	--
+	--
+	--
+	--
+	--
+	--
+	</html>
+	
+	save as index.html 
+	
+	test 
+		
+	<html>
+	---
+	--dfsgfd
+	--sdfgsdf
+	--sdfg
+	--
+	--
+	--
+	</html>
+
+	save as index.html 
+	
+	test 		--> successful
+
+	<html>
+	---
+	--dfsgfd
+	--sdfgsdfsdfsdf
+	--sdfgsdf
+	--sdf
+	--sdfs
+	--
+	asdfasd
+	asdfasdfas
+	df
+	</html>
+
+	save as index.html 
+
+	test 	
+
+
+	Version Control System 
+	
+	index.html 
+	
+	<html>
+	adsfasd
+	adfs
+	asdf
+	</html>
+	
+	save as index.html 		--> index.html_v1.0	(Version_no/Tag/Commit_id>
+	
+	index.html 
+	
+	<html>
+	adsfasd
+	adfs
+	asdf
+	asdfasdfasasd
+	fsd
+	asdfsdf
+	as
+	</html>
+
+	save as index.html 		--> index.html_v1.1	(Version_no/Tag/Commit_id>
+	save as index.html 		--> index.html_v1.2	(Version_no/Tag/Commit_id>
+	save as index.html 		--> index.html_v1.3	(Version_no/Tag/Commit_id>
+	save as index.html 		--> index.html_v1.4	(Version_no/Tag/Commit_id>
+	save as index.html 		--> index.html_v1.5	(Version_no/Tag/Commit_id>
+	save as index.html 		--> index.html_v1.6	(Version_no/Tag/Commit_id>
+	save as index.html 		--> index.html_v1.7	(Version_no/Tag/Commit_id>
+	
+	Version Control System :
+	
+		- Is used to Version Control the Source Code Changes 
+		- It is used to Track the Changes 
+		
+	Repository 	-> It is a collection of files and folders 
+	
+	Types of VCS :
+
+		- Local VCS 
+		- Centralized VCS 
+		- Distributed VCS 
+		
+	
+		- Local VCS :
+
+			- It is used by a user 
+			- Versioning can be done within the local machine.
+			- It is not suitable for multiple users 
+			
+			
+		- Centralized VCS :
+			- Used for multi-user environments
+			- The Project Repository are maintained in a central server
+			- It can be used by others in the team.
+			
+			- users should be online
+			- it is single point of failure 
+			
+		- Distributed VCS :
+		
+			- Used for multi-user environments
+			- The Project repository is maintained in the remote server
+			- Any user can connect to remote server and pull the repo and work offline
+			
+			- Remote Server (Remote Repositories)
+
+			- Local Machine (Local Repositories)
+			
+			
+			- The repos are distributed 
+			
+			Eg.: GIT :
+		
+	
+		GIT is a open-source Distributed VCS :
+		- Is used to Version Control the Source Code Changes 
+		- It is used to Track the Changes
+		- It is used to perform parallel development (using Branching Techniques)
+		
+	
+	Terminologies :
+	
+	Remote git repository servers :
+		github --> remote web server used to maintain the remote git repositories 
+		aws code commit 
+		azure repository
+		gitlab 
+		bit bucket 
+	
+	Local Machine :
+	
+		git client 
+			- Used to manage the local git repositories
+			
+			
+	Working with GIT :::
+
+	Remote Repository 		
+	
+		github account 
+
+	
+	Local Machine :
+	
+		Install GIT Client 		# https://git-scm.com/downloads
+		
+	
+	GIT file workflow 
+	GIT Misc. Commands 
+	GIT Branching Techniques
+	GIT Branching Strategies 
+	GIT Remote Repository Management 
+	
+	Install GIT :
+	
+		On windows Machine :
+		
+			- git bash 
+			- git cmd 
+			- git gui 
+	
+	
+		Open git bash - windows user. 
+		
+		GIT is used to maintain the source code
+		
+		Folder Structure :::
+		
+		goto to a specific drive/folder 
+		
+		create a master folder(root folder)
+		
+		create a project folder(repositories)
+			files and sub-folders 
+			
+			
+		Open git bash 
+		
+		cd d:
+		mkdir SA-cloud-devops-wkend
+		cd SA-cloud-devops-wkend
+		mkdir project-repo1
+		cd project-repo1
+		
+		
+	git cli commands :
+	
+		git --version 
+		
+	
+	GIT File WorkFlow :::
+	
+	Distributed VCS :::
+	
+	
+	Developers' workload ???
+
+		- Enhancement Project / Bug fixing Project
+		
+		- New Project 
+
+		
+	Local Machine 																						Remote Server 
+	
+	install git client 																						github account 
+	
+	
+	Working Directory				Staging Area					Local Repository							Remote Repository		
+	(Physical Location)			
+	
+	vi index.html 	------------->	 index.html		------------->	 index.html_v1.0		---------->					 index.html_v1.0
+						git add                        git commit						 	 git push
+	
+	
+	
+	GIT File Workflow :::
+	
+		git clone 			# Used to Copy/Clone the entire remote repository to Local Machine
+		
+		git add 			# Used to add the changes from working directory to staging area
+		
+		git commit			# Used to permanently commit the changes from staging area to local repository
+		
+		git push 			# Used to push the changes from local repository to remote repository
+		
+		git pull/git fetch 	
+		
+			- Both git pull and fit fetch are used to handle the incremental changes from remote repository 
+			
+			- git fetch :
+					It is just to check for any incremental changes in the remote repository. If incremental changes exist, it will update the details only in the local repository. git fetch will never update anything on the working directory.
+					
+			- git pull :
+					It is to check for any incremental changes in the remote repository. If incremental changes exist, it will update the details in the local repository and pull the changes to the working directory as well.
+
+		
+		git init 			# Is used to initialize a local repository.
+								It create a .git --> GIT Directory
+								It create a default branch called 'master' or 'main' ==> Default branch.
+								
+		fork				# 	Is a process of copying one remote repository to another remote repository
+								
+		
+		
+	How to work with Local Repositories ::::
+	
+		git init 
+		
+		git status			# To Check the status of git repository
+	
+	Working Directory				Staging Area					Local Repository							Remote Repository		
+	(Physical Location)			
+	
+	file1.txt 		---> git add --->	file1.txt 	---> git commit -->
+	
+		git add <file_Name>
+		
+		git commit -m <Commit_Message> 
+		
+		
+		git log 			# Get the list commit happened in the Repository
+		
+		
+		
+		git configuration:		# This user_name and Email Configuration should be done before the very first commit
+		
+			git local configuration		# Is applicable within a repository
+			
+				git config user.email "loksai@asdfs.com"
+			
+				git config user.name "loksai"	
+
+			
+			
+			git global configuration	# Is applicable for all the repositories
+	
+				git config --global user.email "loksai@asdfs.com"
+			
+				git config --global user.name "loksai"
+				
+				git config --list
+				
+		Workflow:
+		
+			git init 
+			
+				git config --global user.email "loksai@asdfs.com"			# One time activity
+			
+				git config --global user.name "loksai"						# One time activity
+				
+			echo "rec1" >> f1.txt
+
+			git add f1.txt 
+			 git commit -m "asdfs" 
+			 git log 
+			 
+
+	git add Command Syntaxt :::
+		
+		git add <file_name>
+		
+		git add <file1_Name> <file2_Name> 
+		
+		git add *.java *.md 
+		
+		git add .
+		
+	
+	git commit 
+	
+		git commit -m <Commit_Message> 
+		
+		REL_Number
+		CR_Number
+		
+		git commit -m "CR1082024 - Updated payment function"
+	
+	git log 
+	
+		git log 
+		
+		git log --oneline 
+		
+		git log --stat
+		
+		git log -1
+		
+		git log --oneline -1
+		
+		
+	git show <commit_id> 
+	
+	
+	git status 
+	
+		get the current status of the git repository
+	
+	
+	git diff 
+	
+	
+	Revert the Changes from Staging area ::::
+	
+		git rm --cached	<file_name>		# it will remove the file changes from staging area. The changes will be back to working directory
+		
+		git rm -f <file_name>			# it will permanently remove the file changes from staging area as well as from working directory
+	
+	
+	.gitignore ::::
+	
+		- It is used to ignore the files from tracking 
+		- .gitignore file should be created to maintains all the file names/patterns to be ignored
+		- As a best practise, .gitignore should be the very first commit in any repository.
+		
+		
+		Project folder :
+		
+		Local Machine :													push 				remote repo ...
+			Java_web_app_project1
+				src 
+					*.java 
+				test 
+					*.java 
+				appln.properties
+				target
+					*.war 
+					*.jar 
+				dbase credentials 
+				secrets 
+	
+501  git --version
+  502  pwd
+  503  cd :
+  504  d:
+  505  clear
+  506  pwd
+  507  d:
+  508  d
+  509  cd d:
+  510  clear
+  511  cd d:
+  512  pwd
+  513  mkdir SA-cloud-devops-wkend
+  514  cd SA-cloud-devops-wkend/
+  515  pwd
+  516  mkdir project-repo1
+  517  ls
+  518  cd project-repo1/
+  519  ls
+  520  clear
+  521  cd ..
+  522  pwd
+  523  mkdir project-repo2
+  524  ls
+  525  cd ..
+  526  cd SA-cloud-devops-wkend/
+  527  cd project-repo1/
+  528  c;ear
+  529  clear
+  530  ls
+  531  git --version
+  532  cd ..
+  533  ls
+  534  cd project-repo1
+  535  pwd
+  536  cd ..
+  537  cd project-repo1/
+  538  touch asdf
+  539  ls
+  540  pwd
+  541  clear
+  542  pwd
+  543  git init
+  544  ls
+  545  rm asdf
+  546  ls
+  547  ls
+  548  ls -a
+  549  cd .git/
+  550  ls
+  551  clear
+  552  ls -a
+  553  cd ..
+  554  ls
+  555  git status
+  556  clear
+  557  git status
+  558  ls
+  559  echo "rec1" >> file1.txt
+  560  ls
+  561  git status
+  562  git add file1.txt
+  563  git status
+  564  git commit -m "created file1.txt"
+  565  git status
+  566  git log
+  567  ls
+  568  ehco "rec1" >> file2.txt
+  569  echo "rec1" >> file2.txt
+  570  git status
+  571  git add file2.txt
+  572  git commit -m "created file2.txt"
+  573  git log
+  574  cd ..
+  575  ls
+  576  cd project-repo2/
+  577  clear
+  578  ls
+  579  ls -a
+  580  git init
+  581  ls -a
+  582  git status
+  583  echo "rec1" >> s1.txt
+  584  git add .
+  585  git commit -m "Created s1.txt"
+  586  git log
+  587  clear
+  588  ls
+  589  git log
+  590  git config user.name "loksai"
+  591  echo "Rec1" >> s1.txt
+  592  git add s1.txt
+  593  git commit -m "updated s1.txt"
+  594  git log
+  595  cd ..
+  596  cd project-repo1/
+  597  git log
+  598  echo "rec1" >> l1.txt
+  599  git add l1.txt
+  600  git commit -m "asdfas"
+  601  git log
+  602  git log
+  603  git config list
+  604  git config --list
+  605  clear
+  606  git config --list
+  607  got status
+  608  git status
+  609  echo "record1" >> file4.txt
+  610  cat file4.txt
+  611  touch file5.txt
+  612  cat file5.txt
+  613  git status
+  614  git add .
+  615  clear
+  616  clear
+  617  echo
+  618  cd ..
+  619  clear
+  620  ls
+  621  mkdir project-repo3
+  622  cd project-repo3/
+  623  clear
+  624  git init
+  625  echo "rec1" >> f1.txt
+  626  git add f1.txt
+  627  git commit -m "created f1.txt"
+  628  git log
+  629  clear
+  630  ls
+  631  git status
+  632  ehco "rec1" >> s1.txt
+  633  echo "rec1" >> s1.txt
+  634  echo "rec1" >> s2.txt
+  635  echo "rec1" >> s3.txt
+  636  echo "rec1" >> a1.java
+  637  echo "rec1" >> a2.java
+  638  echo "rec1" >> a3.java
+  639  echo "rec1" >> q1.doc
+  640  echo "rec1" >> q2.doc
+  641  echo "rec1" >> q3.doc
+  642  echo "rec1" >> m1.md
+  643  echo "rec1" >> m2.md
+  644  echo "rec1" >> m3.md
+  645  clear
+  646  ls
+  647  git status
+  648  git add a1.java
+  649  git status
+  650  git add m1.md m2.md s1.txt
+  651  git status
+  652  git add *.doc *.md
+  653  git status
+  654  git add .
+  655  git status
+  656  git commit -m "created some files"
+  657  git log
+  658  git log --oneline
+  659  git log --stat
+  660  git log
+  661  git log --stat
+  662  git log -1
+  663  git log -5
+  664  git log --oneline -1
+  665  git log --stat -1
+  666  git log --oneline
+  667  clear
+  668  git log --oneline
+  669  git show 12a21c2
+  670  git show 12a21c2 -2
+  671  git show -2
+  672  git status
+  673  echo "asdfasD" >> asdfsdf.txt
+  674  git status
+  675  clear
+  676  ls
+  677  cat f1.txt
+  678  git add .
+  679  git commit -m "asdfs"
+  680  clear
+  681  cat f1.txt
+  682  echo "rec2" >> f1.txt
+  683  echo "rec3" >> f1.txt
+  684  cat f1.txt
+  685  git status
+  686  git diff
+  687  git add .
+  688  git commit -m "updated f1.txt"
+  689  git diff
+  690  cat f1.txt
+  691  echo "record1" > f1.txt
+  692  cat f1.txt
+  693  git status
+  694  git diff
+  695  git add .
+  696  git commit -m "changed records"
+  697  git status
+  698  clear
+  699  clear
+  700  git status
+  701  echo "rec1" >> k1.txt
+  702  git add .
+  703  git status
+  704  echo "rec1" >> k2.txt
+  705  echo "rec1" >> k3.txt
+  706  echo "rec1" >> k4.txt
+  707  git add .
+  708  git status
+  709  git rm --cached k1.txt
+  710  git status
+  711  git rm --cached *.txt
+  712  clear
+  713  git status
+  714  git add .
+  715  clear
+  716  git status
+  717  ls
+  718  git rm -f k1.txt
+  719  ls
+  720  clear
+  721  cd ..
+  722  mkdir.exe project-repo4
+  723  cd project-repo4/
+  724  git init
+  725  ls
+  726  ls -a
+  727  clear
+  728  git status
+  729  vi .gitignore
+  730  cat .gitignore
+  731  git status
+  732  git add .
+  733  git commit -m "initial commit created gitignore file"
+  734  git log
+  735  ls
+  736  ls -a
+  737  cat
+  738  clear
+  739  cat .gitignore
+  740  ls
+  741  echo "rec" >> file.txt
+  742  git status
+  743  echo "rec" >> sample1.txt
+  744  git status
+  745  echo "rec" >> sample.txt
+  746  ls
+  747  git statsu
+  748  git status
+  749  vi .gitignore
+  750  ls
+  751  cd ..
+  752  history
+	
+	
+Next :::
+
+	git reset 
+	
+	git revert 
+	
