@@ -651,3 +651,419 @@ Next :::
 	
 	git revert 
 	
+
+~~~~~~~~~~~~~~~~~~~~~~~
+Day 6: 28th July 2024
+~~~~~~~~~~~~~~~~~~~~~~~	
+
+	git reset 
+	
+	git revert 
+	
+	git branches and strategies 
+	
+	git remote 
+
+
+
+
+	GIT RESET ::
+	
+		- git reset:
+		
+			- Is used to undo the committed changes
+			- Will undo the changes, but it will never create any commit point 
+			- git reset is not recomended in the shared repository 
+			
+			
+			
+		- git reset options :::
+		
+			Syntax :
+			
+				git reset <reset_type> <prev_commit_id>
+		
+			- git reset --soft :
+					- will take the changes back to staging area.
+					- head pointer will be moved to previous commit point 
+					- the changes will be present in staging as well as in the working directory
+			
+			
+			- git reset --mixed :													# default 
+					- will take the changes back to working directory.
+					- head pointer will be moved to previous commit point 
+					- the changes will be present only in the working directory			
+			
+			- git reset --hard :
+					- will remove the file permanently
+					- head pointer will be moved to previous commit point 
+					- the changes will be permanently lost.
+					- without proper knowledge about the changes. It is not recommended to use --hard option.
+				
+				
+			Repo1:
+			
+				c1,c2,c3,c4,c5
+	
+				git reset --soft <c4>
+				
+				c1,c2,c3,c4
+					
+					
+	git revert ::::
+
+			- Is same as git reset hard
+			- But, the difference is, git revert will create new commit point to track the changes.
+			- The Commit history will be retained. which can be used to recover the accident loss of files.
+			- It is recomended in the shared repository.
+			
+			
+		git revert <specific_previous_commit_id>
+			
+			
+	git commit :::
+	
+		git commit -m <msg>
+	
+		git commit --amend -m "valid msg"
+		
+	
+	
+	GIT Branching Techniques :::
+	
+		Distributed VCS is based on branching Techniques.
+		
+		git branches are used to perform parallel development.
+		
+	GIT Branching Strategies :::
+	
+		-> is to enable parallel development without any conflicts.
+		-> is used to prevent conflicts in the master branch of the repository
+		-> It help maintain the integrity of Master Branch 
+				- Master Branch should always hold the latest changes - it is considered as a production copy/version.
+	
+		-> Branch is logical copy of the repository 
+	
+			Repo1 
+				master : cm1,cm2,cm3
+						 cm1,cm2,cm3,f1cm1,f1cm2				# Upon merging feature_Branch1
+				
+				feature_Branch1 : cm1,cm2,cm3,f1cm1,f1cm2
+		
+
+	Scenario 1:
+	
+		Repo1:
+			master : cm1,cm2,cm3,cm4,.....
+	
+	
+	Scenario 2 :
+		Repo1 		
+			master : cm1,cm2,cm3 
+						cm1,cm2,cm3,Developer_Branch_Changes						# Upon Developer_Branch		
+
+				Developer_Branch : 	cm1,cm2,cm3
+									cm1,cm2,cm3,f1cm1,f1cm2,f2cm1,f2cm2				# Upon merging feature_Branch1&2
+			
+					feature_Branch1 : cm1,cm2,cm3,f1cm1,f1cm2
+				
+					feature_Branch2 : cm1,cm2,cm3,f2cm1,f2cm2
+	
+	Scenario 3 :
+		Repo1 		
+			master : cm1,cm2,cm3
+					cm1,cm2,cm3,Integration_Branch_Changes				# Upon merging Integration_Branch
+			
+				Integration_Branch : cm1,cm2,cm3
+								cm1,cm2,cm3,Developer1_Branch_Changes,Developer2_Branch_Changes	 # Upon Merge from developer1&2
+
+					Developer1_Branch : 	cm1,cm2,cm3
+											cm1,cm2,cm3,f1cm1,f1cm2,f2cm1,f2cm2				# Upon merging feature_Branch1&2
+				
+						feature_Branch1 : cm1,cm2,cm3,f1cm1,f1cm2
+					
+						feature_Branch2 : cm1,cm2,cm3,f2cm1,f2cm2	
+		
+					Developer2_Branch : 	cm1,cm2,cm3
+											cm1,cm2,cm3,f1cm1,f1cm2,f2cm1,f2cm2				# Upon merging feature_Branch1&2
+				
+						feature_Branch1 : cm1,cm2,cm3,f1cm1,f1cm2
+					
+						feature_Branch2 : cm1,cm2,cm3,f2cm1,f2cm2	
+
+
+	
+	Scenario 4 :
+		Repo1 		
+			master : cm1,cm2,cm3
+						cm1,cm2,cm3,cm4											# cm4 is the integration of Team1 and Team2 changes		
+
+				Release_Branch : cm1,cm2,cm3,Team1_Changes,Team2_Changes						
+			
+					Integration_Branch1 : cm1,cm2,cm3															# Team1
+					
+									cm1,cm2,cm3,Developer1_Branch_Changes,Developer2_Branch_Changes	 # Upon Merge from developer1&2
+
+						Developer1_Branch : 	cm1,cm2,cm3
+												cm1,cm2,cm3,f1cm1,f1cm2,f2cm1,f2cm2				# Upon merging feature_Branch1&2
+					
+							feature_Branch1 : cm1,cm2,cm3,f1cm1,f1cm2
+						
+							feature_Branch2 : cm1,cm2,cm3,f2cm1,f2cm2	
+			
+						Developer2_Branch : 	cm1,cm2,cm3
+												cm1,cm2,cm3,f1cm1,f1cm2,f2cm1,f2cm2				# Upon merging feature_Branch1&2
+					
+							feature_Branch1 : cm1,cm2,cm3,f1cm1,f1cm2
+						
+							feature_Branch2 : cm1,cm2,cm3,f2cm1,f2cm2	
+
+					Integration_Branch2 : cm1,cm2,cm3															#Team2
+					
+									cm1,cm2,cm3,Developer1_Branch_Changes,Developer2_Branch_Changes	 # Upon Merge from developer1&2
+
+						Developer1_Branch : 	cm1,cm2,cm3
+												cm1,cm2,cm3,f1cm1,f1cm2,f2cm1,f2cm2				# Upon merging feature_Branch1&2
+					
+							feature_Branch1 : cm1,cm2,cm3,f1cm1,f1cm2
+						
+							feature_Branch2 : cm1,cm2,cm3,f2cm1,f2cm2	
+			
+						Developer2_Branch : 	cm1,cm2,cm3
+												cm1,cm2,cm3,f1cm1,f1cm2,f2cm1,f2cm2				# Upon merging feature_Branch1&2
+					
+							feature_Branch1 : cm1,cm2,cm3,f1cm1,f1cm2
+						
+							feature_Branch2 : cm1,cm2,cm3,f2cm1,f2cm2	
+
+
+		Adhoc Requirements :
+		
+			Hotfix Changes 
+			
+			Repo1: 
+				master : cm1,cm2,cm3 
+							cm1,cm2,cm3,fixv1.0
+				
+					
+					hotfix_Branch : cm1,cm2,cm3
+					
+										cm1,cm2,cm3,hcm1,hcm2,hcm3
+
+
+	Create Branches :::
+	
+		git branch 					# List the Branches 
+		
+		Create Branches :
+			git branch feature1 
+			
+			git checkout -b feature1 
+			
+			git switch -c feature1 
+			
+				
+			commit in feature1 
+			
+			
+		Repo1:
+			master : cm1 
+			
+				feature1 : cm1 
+				
+					git switch feature1 
+					
+					echo "rec!" >> s1.txt 
+					
+					git add .
+					
+					git commit -m "f1cm1"
+					
+			How to Merge the incremental changes to master/target Branch	
+			
+					git switch master 
+
+					git merge feature1				# Run the merge command from the target branch
+					
+					
+	Merge Conflict :
+		
+	How to handle the Merge Conflicts ??
+
+		Reason for Merge Conflicts ?
+		
+			Whenever more than one feature/user update the same file at same level, merge conflicts will occur on the target branch.
+		
+		How to Resolve ?
+		
+			- Identify the file(s) causing the merge conflict 
+			- Open and review the file content from the target branch 
+			- Decide which changes should be deleted or retained from that file
+			- Update the file accordingly - remove the header and footer tags
+			- perform git add and commit on the target branch
+			
+			
+		Prevent the Merge Conflict :::
+		
+			How to prevent the merge conflict ?
+			
+				Based on DevOps Process : Proper collaboration & Prior reviews will prevent this issue!
+				
+				
+				
+	GIT way of preventing the conflicts in target branch :::
+	
+		git rebase :::
+				- It is used to maintain the linear commit history
+				- It is used to keep the current branch in-sync with target branch
+				- It is used to prevent the merge conflict in the target branch
+				- As a best practise, it is always recommended to use rebase before any merge action
+			
+		
+		Repo1: 
+		
+			master : cm1,cm2,cm3 
+						cm1,cm2,cm3,f1cm1,f1cm2			 	# Upon merging changes from feature1 
+						
+						cm1,cm2,cm3,f2cm1,f2cm2,f1cm1,f1cm2	# Upon merging changes from feature2 without rebase 
+						
+						cm1,cm2,cm3,f1cm1,f1cm2,f2cm1,f2cm2	# Should be actualy commit histroy
+						
+						cm1,cm2,cm3,f1cm1,f1cm2,f2cm1,f2cm2 # Upon merging changes from feature2 with rebase 
+						
+						
+				feature1 : cm1,cm2,cm3
+				
+						cm1,cm2,cm3,f1cm1,f1cm2 
+						
+						git switch master 
+						
+						git merge feature1		
+						
+				
+				feature2 :	cm1,cm2,cm3 
+				
+							cm1,cm2,cm3,f2cm1,f2cm2 
+							
+							git rebase master							# This should be executed from current branch 
+
+							cm1,cm2,cm3,f1cm1,f1cm2,f2cm1,f2cm2 	
+						
+							git switch master 
+							
+							git merge feature2							# This should be executed from target branch 
+							
+							
+	GIT SQUASH :::
+	
+		--> It is merge option used to Combine more that one commits into one commit point. 
+		--> Sometimes, if you dont want to expose the commit history to target branch, use --squash option.
+		
+		Repo1:
+		
+			master : cm1,cm2,cm3
+			
+					 cm1,cm2,cm3,f1cm1,f1cm2,3,4,5,6,7,8,9,..............................,200				# Without Squash Option 
+				
+						cm1,cm2,cm3,cm4																		# With Squash Option  
+						
+				feature1 : cm1,cm2,cm3 
+							
+							cm1,cm2,cm3,f1cm1,f1cm2,3,4,5,6,7,8,9,..............................,200
+							
+							git switch master 
+							
+							git merge feature1 
+							
+							git merge --squash feature1 
+							
+							git commit -m "Msg" 
+							
+	Scenario 4 :
+		Repo1 		
+			master : cm1,cm2,cm3
+						cm1,cm2,cm3,cm4											# cm4 is the integration of Team1 and Team2 changes		
+
+				Release_Branch : cm1,cm2,cm3,Team1_Changes,Team2_Changes						
+			
+					Integration_Branch1 : cm1,cm2,cm3															# Team1
+					
+									cm1,cm2,cm3,Developer1_Branch_Changes,Developer2_Branch_Changes	 # Upon Merge from developer1&2
+
+						Developer1_Branch : 	cm1,cm2,cm3
+												cm1,cm2,cm3,f1cm1,f1cm2,f2cm1,f2cm2				# Upon merging feature_Branch1&2
+					
+							feature_Branch1 : cm1,cm2,cm3,f1cm1,f1cm2
+						
+							feature_Branch2 : cm1,cm2,cm3,f2cm1,f2cm2	
+			
+						Developer2_Branch : 	cm1,cm2,cm3
+												cm1,cm2,cm3,f1cm1,f1cm2,f2cm1,f2cm2				# Upon merging feature_Branch1&2
+					
+							feature_Branch1 : cm1,cm2,cm3,f1cm1,f1cm2
+						
+							feature_Branch2 : cm1,cm2,cm3,f2cm1,f2cm2	
+
+					Integration_Branch2 : cm1,cm2,cm3															#Team2
+					
+									cm1,cm2,cm3,Developer1_Branch_Changes,Developer2_Branch_Changes	 		 Upon Merge from developer1&2
+
+						Developer1_Branch : 	cm1,cm2,cm3
+												cm1,cm2,cm3,f1cm1,f1cm2,f2cm1,f2cm2				# Upon merging feature_Branch1&2
+					
+							feature_Branch1 : cm1,cm2,cm3,f1cm1,f1cm2
+						
+							feature_Branch2 : cm1,cm2,cm3,f2cm1,f2cm2	
+			
+						Developer2_Branch : 	cm1,cm2,cm3
+												cm1,cm2,cm3,f1cm1,f1cm2,f2cm1,f2cm2				# Upon merging feature_Branch1&2
+					
+							feature_Branch1 : cm1,cm2,cm3,f1cm1,f1cm2
+						
+							feature_Branch2 : cm1,cm2,cm3,f2cm1,f2cm2	
+			
+		
+		
+	git cherry-pick <commit_id>				# Is like merge. But is used to merge a specific commit to the target branch.
+											# It is not recomended.
+											# Only if we use squash at every level properly we can use chery-pick. else do not think about it.!
+												
+												
+	git stash ::::
+		
+		- Is used to save the uncommitted changes to a temporary area!
+		
+		
+		Repo1: 
+			
+				master : cm1 
+				
+					feature1: cm1 
+								cm1
+								
+								
+		git stash save "save_message"		# Create Stash Entry
+		
+		git stash list 						# List the Stash entires
+		
+		git stash apply						# Used to copy the latest entry from the stash list back to staging area
+			git stash apply	stash@{3}
+			
+		git stash drop 						# Used to drop/delete the latest entry from the stash list
+			git stash drop stash@{3}
+			
+		git stash pop						# Used to copy and drop the latest entry from the stash list back to staging area
+			git stash pop stash@{2}
+	
+		git stash clear						# To Clean-up the stash list
+		
+		
+	
+	
+	
+	git remote repository handle :::
+	
+	
+	Module ::: Jenkins
+		
+		
