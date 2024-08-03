@@ -1,0 +1,172 @@
+~~~~~~~~~~~~~~~~~~~~~~~
+Day 7: 3rd Aug. 2024
+~~~~~~~~~~~~~~~~~~~~~~~	
+	
+	Module ::: Jenkins
+	
+		Jenkins - Build Orchestration Tool :::	
+
+			Jenkins is used to orchetrate the devops tools and create end-to-end devops CI/CD Pipeline to perform automated builds and deployment.
+			
+		Jenkins 
+		Bamboo
+		Azure Pipeline			Declarative Languages using json/yaml scripts --> files are based key:value pairs
+		AWS Code Pipeline 
+		gitlab-ci 
+		github action
+		
+		
+		DevOps Assessment Phase:
+		
+			Onpremise Environment ::
+			
+				Jenkins	-> Open-Source Build Orchestration Tool 
+			
+			Cloud Platform :: client - aws - 
+			
+				DevOps on Cloud :::
+			
+					Open-Source Build Orchestration Tool like Jenkins 
+					
+					Managed Services 
+						
+		
+		Working in Jenkins :
+		
+			CI/CD process automation Scripts are written using groovy scripting language.
+				- Scripted Pipelines 		==> required core scripting knowledge & it is very complex to write and manage 
+				- Declarative Pipelines		==> simplified version of Scripted Pipelines
+				
+		Jenkins Architecture :::
+		
+			- Jenkins is based on :
+				Master - Slave Architecture
+				
+				Jenkins_Master Node (VM) 				
+					Jenkins_Slave Node1 (VM)
+					Jenkins_Slave Node2 (VM)
+					
+		Working with Jenkins ::::
+		
+			1. Build and Release Workload / Frequency :
+			
+				Master - Slave Architecture
+				
+				Jenkins_Master Node (VM) 		==> Install Jenkins, It is used to Create Jenkins CICD pipeline Projects
+													Schedule to run on the Slave Nodes
+																						
+					Jenkins_Slave Node1 (VM)
+					Jenkins_Slave Node2 (VM)				
+
+			Using DevOps Automation :: 
+			
+				Build the source code ---> Compile the source code and create artifacts - Binaries (*.war/*.jar/*.exec/*.dll)
+				Unit Testing 
+				Promote the Change to Test Environments
+				Notify the Testing Teams 				
+			
+			scenario 1:
+			
+				Jenkins Master (VM) 			Install Jenkins, It is used to Create Jenkins CICD pipeline Projects
+												Java Build tool to be installed in this node, perform build and create artifacts.
+					
+			scenario 2: Master - Slave Architecture
+			
+				Jenkins Master (VM) 			# Install Jenkins, Create Jenkins CICD pipeline Projects
+												# Schedule to run the builds on the Slave Nodes
+				
+					Jenkins_Slave1(VM)			# Java Build 
+					Jenkins_Slave2(VM)			# Python Build 
+					Jenkins_Slave3(VM)			# NodeJS Build 
+					Jenkins_Slave4(VM)			# Angular Build 
+					Jenkins_Slave5(VM)			# .Net SDK Build 
+					
+					
+		
+		Working with Jenkins ::::
+
+
+			Developers' Perspective :
+			
+				- Developers are just the consumers 
+					
+					
+			DevOps Perspective ::
+
+				- DevOps Team is the Owner/Administrator of Jenkins
+					
+			Roles and Responsibilites of DevOps Engineer:			
+			
+				- Installation of Jenkins package 
+				- Management of Post Build Actions of Jenkins 
+				- Global System Management 
+				- Jenkins Plugins Management
+				- Tools Management 
+				- User Management 
+				- Security Management 
+				- Credential Management 
+				- Jenkins Master and Slave Node Setup and Configurations 
+				- Integration of all the required external servers to Jenkins Master 
+				- Creation of CICD Pipeline Projects 
+				- Onboarding the applications to Jenkins CICD Process 
+				- Periodic upgrade of Jenkins and its plugins 
+				- Periodic backup of Jenkins Server and its resources 	
+				- Trouble-shooting issues
+			
+			
+			- Setup Jenkins Server :::
+			
+				- Jenkins run as a service. It runs in default port : 8080
+			
+				- Create a EC2 Instance 
+					- t2.mirco
+					- AMI - previous version of ubuntu - v22.04
+
+				- Add Security Group - inbound-rule - port 8080 
+				
+				- Login to EC2 Instance & Install Jenkins and its tools 
+										https://www.jenkins.io/doc/book/installing/linux/
+				
+				- Use Web Browser to access the Jenkins Dashboard
+				
+				
+		Environments :::
+		
+			Non-Prod Environments							=====>				Production Environments
+			
+				Dev Environment
+				Build Environment
+				Test Environments
+					QA  - Quality Assurance Testing 
+					UAT - User Acceptance Testing			----->					Production Server(s) - 24/7
+
+			
+
+	DevOps LifeCycle :::
+	
+		Developers 
+		
+			Coding 
+			
+			Commit the code to Repository(GITHUB)
+			
+			Build 												# Build Tool 
+			
+			Unit Testing 										# Unit Testing Tool 
+			
+			Promote the code to QA Environment					# Deployment Tools 
+			
+			QA Testing 											# Testing Tools 
+			
+			Promote the Code to UAT Environment					# Deployment Tools 
+                                                                
+			UAT Testing                                         # Testing Tools 
+			
+			Promote the Code to Prod Environment				# Deployment Tools 
+			                                                    
+			Prod Testing                                        # Testing Tools 
+			
+			Application will be LIVE 
+
+			Production Monitoring 								# monitoring Tools 
+
