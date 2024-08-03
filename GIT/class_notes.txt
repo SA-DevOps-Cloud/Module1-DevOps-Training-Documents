@@ -1508,4 +1508,239 @@ Next :::
 	
 	Module ::: Jenkins
 		
+~~~~~~~~~~~~~~~~~~~~~~~
+Day 7: 3rd Aug. 2024
+~~~~~~~~~~~~~~~~~~~~~~~	
+
+	git remote repository handle :::
+	
+		
+	Local Machine 																						Remote Server 
+	
+	install git client 																						github account 
+	
+	
+	Working Directory				Staging Area					Local Repository							Remote Repository		
+	(Physical Location)			
+	
+	vi index.html 	------------->	 index.html		------------->	 index.html_v1.0		---------->					 index.html_v1.0
+						git add                        git commit						 	 git push
+
+
+		
+
+	Developers' Workload ::
+	
+	- Enhancement/Bugfix Project 		
+		
+		1. Create Repositories 
+			- working on remote repositories
+		
+		remote git repositories :
+		
+			- github 
+			
+			- gitlab 
+			- bitbucket 
+			- Azure Repo 
+			- AWS Code Commit 
+		
+
+		1. How to create remote repositories
+		
+		2. Pull Request 	--> Created by the developer and submitted to the approver.
+		
+		
+		
+		TestRepo1			==> 	Remote Repository 
+		
+			To Enhancement/Bugfix Project
+
+		git clone :  using clone url
+		
+			git clone https://github.com/SA-DevOps-Cloud/TestRepo1.git
+		
+		
+		git remote -v		==> Used to get the list of remote repositories linked to the local repository
+		
+		
+		Enable User authentication :
+		
+			Create github Access Token
+			 
+			-username/password	= used to login to github thru web browser 
+
+			-username/Access_Token = used to access github thru cli / api 
+			
+		Login to github 
+		
+		goto account level settings --> choose Developers setting(last option on the leftside panel)
+		
+		Choose personal Access tokens 
+			- token classic 
+			
+				
+		
+		git rebase 			# Used to bring the incremental changes from local target branch repo to local current branch , i.e., within the local repo
+		                    # It will keep the local repo branch in sync within the local repo
+							
+							
+							
+		git pull 			# Used to bring the incremental changes from remote repo to local
+							# It will keep the local repo in sync with remote repo 
+		
+		
+		git push -u origin <local-branch_name>
+		
+		git push -u origin <dummy-feature1>
+		
+		git push -u origin <local-feature1>
+		
+		GIT File Workflow :::
+	
+		git clone 			# Used to Copy/Clone the entire remote repository to Local Machine
+		
+		git add 			# Used to add the changes from working directory to staging area
+		
+		git commit			# Used to permanently commit the changes from staging area to local repository
+		
+		git push 			# Used to push the changes from local repository to remote repository
+		
+		git pull/git fetch 	
+		
+			- Both git pull and fit fetch are used to handle the incremental changes from remote repository 
+			
+			- git fetch :
+					It is just to check for any incremental changes in the remote repository. If incremental changes exist, it will update the details only in the local repository. git fetch will never update anything on the working directory.
+					
+			- git pull :
+					It is to check for any incremental changes in the remote repository. If incremental changes exist, it will update the details in the local repository and pull the changes to the working directory as well.
+					
+					git pull = git fetch + merge 
+
+		
+		git init 			# Is used to initialize a local repository.
+								It create a .git --> GIT Directory
+								It create a default branch called 'master' or 'main' ==> Default branch.
+								
+
+								
+	- New project ::::::::::::::
+		
+			- Create one empty remote repository 
+		
+		
+			- git remove -v 										# List the remote repos linkd to the local repo
+			
+			- git remote add origin <remote_repo_url>				# To add/link the remote repo to local repo
+			
+			- git remote remove origin 								# To Remove the remote repo from local repo
+		
+			- git branch -M master									# Rename the Branch
+			
+			
+			
+			git init 
+			
+			echo "*.war" >> .gitignore
+			
+			git add .
+			
+			git commit -m "cm1"
+			
+			git remote add origin https://github.com/SA-DevOps-Cloud/testrepo2.git			
+			
+			git push -u origin master 
+			
+			
+  776  cd d:
+  777  clear
+  778  ls
+  779  SA-cloud-devops-wkend/
+  780  clear
+  781  cd SA-cloud-devops-wkend/
+  782  clear
+  783  ls
+  784  mkdir remote-repos
+  785  clera
+  786  clera
+  787  clear
+  788  cd remote-repos/
+  789  clear
+  790  git clone https://github.com/SA-DevOps-Cloud/TestRepo1.git
+  791  ls
+  792  cd TestRepo1/
+  793  ls
+  794  git branch
+  795  git remote -v
+  796  git switch -c local-feature1
+  797  ls
+  798  git log --oneline
+  799  git switch main
+  800  git log --oneline
+  801  git switch local-feature1
+  802  echo "rec1" >> local-file1.txt
+  803  echo "rec2" >> local-file1.txt
+  804  echo "rec3" >> local-file1.txt
+  805  git add .
+  806  git commit -m "create local-file1"
+  807  git log --oneline
+  808  git push -u origin
+  809  git push -u origin local-feature1
+  810  clear
+  811  git switch main
+  812  ls
+  813  git status
+  814  git fetch
+  815  git status
+  816  ls
+  817  git pull
+  818  ls
+  819  git status
+  820  git log --oneline
+  821  git switch local-feature1
+  822  git log --oneline
+  823  git rebase main
+  824  git log --oneline
+  825  echo "rec1" >> q1.txt
+  826  git add .
+  827  git commit -m "local q1.txt"
+  828  git push -u origin local-feature1
+  829  git push -u origin
+  830  clear
+  831  git switch main
+  832  ls
+  833  git pull
+  834  ls
+  835  cd ..
+  836  clear
+  837  ls
+  838  mkdir testrepo2
+  839  cd testrepo2/
+  840  ls
+  841  clear
+  842  git init
+  843  git remote -v
+  844  git remote add origin https://github.com/SA-DevOps-Cloud/testrepo2.git
+  845  git remote -v
+  846  git remote remove origin
+  847  git remote -v
+  848  git remote -v
+  849  git status
+  850  ls
+  851  echo "rec1" >> file1.txt
+  852  git add .
+  853  git commit -m "cm1"
+  854  git branch -M main
+  855  git branch -M master
+  856  git remote -v
+  857  git remote add origin https://github.com/SA-DevOps-Cloud/testrepo2.git
+  858  git remote -v
+  859  git push -u origin master
+  860  clear
+  861  git remote -v
+  862  git remote add azrepo1 https://github.com/SA-DevOps-Cloud/testrepo1.git
+  863  git remote -v
+  864  clear
+  865  history
 		
