@@ -170,3 +170,222 @@ Day 7: 3rd Aug. 2024
 
 			Production Monitoring 								# monitoring Tools 
 
+~~~~~~~~~~~~~~~~~~~~~~~
+Day 8: 4th Aug. 2024
+~~~~~~~~~~~~~~~~~~~~~~~	
+
+		- Jenkins Plugins Management
+		- User Management 
+		- Security Management 
+		- Credential Management 
+		- Create Sample Jenkins Jobs 
+		- Working Jenkins Variables
+		- Jenkins Master and Slave Node Setup and Configurations 
+		- Configure Tomcat Server to automate deployments
+
+
+
+	Jenkins Jobs/Projects:
+	
+		- Free-Style Projects 
+			- Completely based on the manual configurations 
+
+			
+			
+		Handling Variables :::
+		
+			- Environment Variables			# Its reserved key-word 	
+			
+			
+				echo "jenkins-${JOB_NAME}-${BUILD_NUMBER}"
+			
+			
+				"${var}"
+				
+				
+			- User-Defined Variables 
+			
+				a = 5
+				
+				envi = 'QA'
+				
+				
+		
+		- Pipeline Projects
+			- Completely based on the scripting - groovy scripts to configure the pipeline projects 
+			
+			- Two of Pipelines:
+			
+				- Scripted Pipelines 
+				
+				- Declarative Pipelines
+
+			CI/CD process automation Scripts are written using groovy scripting language.
+				- Scripted Pipelines 		==> required core scripting knowledge & it is very complex to write and manage 
+				- Declarative Pipelines		==> simplified version of Scripted Pipelines
+	
+		Jenkins Pipeline Jobs Composed of various Stages.	
+		
+		Pipeline 
+		{
+			Stages
+			{
+				stage1{
+					steps{
+					}
+				}
+				stage2{
+					steps{
+					}
+				}
+				stage3{
+					steps{
+					}
+				}
+			}
+		}
+		
+
+pipeline {
+    agent any
+
+    stages {
+        stage('SCM-Checkout') {
+            steps {
+                echo 'Perform SCM Checkout'
+            }
+        }
+        stage('Application Build ') {
+            steps {
+                echo 'Build the Application - Compile and Create Artifacts'
+            }
+        }
+        stage('Deploy Artifacts to QA Environment') {
+            steps {
+                echo 'Deploy to QA'
+            }
+        }
+    }
+}
+
+
+Jenkins Pipeline --> Create CICD Automation process:
+
+CI/CD ???
+
+	Jenkins Master and Slave Node Setup and Configurations ::
+
+		Jenkins_Master (VM) 			- Jenkins Pipeline Creation 
+		
+			Jenkins_Slave_Node (VM) 	- Java Application Build 
+	
+
+
+	Plan for any Infra-Structure :::
+	
+		Purpose of the Servers :
+		
+			Jenkins_Master 							# Create Jenkins CICD pipeline Projects
+			                                        # Schedule to run the builds on the Slave Nodes		
+													
+				Jenkins_Slave 						# To perform Java Application Builds and Create Artifacts 
+				
+				
+
+		Tools to be installed in the servers :
+		
+			Jenkins_Master 							# git, jdk, jenkins
+				Jenkins_Slave						# git, jdk, Build Tool(Maven)
+				
+		Properties of Application Build Tools :::
+		
+		Java Maven Application Build Tool :
+		
+			- Used to Compile java application source code 
+			- Create Artifacts (*.war/*.jar)
+			- Perform Automated Unit Testing 
+			
+			- Maven POM.xml file 
+				- pom.xml file is maintained in the source code repository by the application team, to define the application properties, dependencies and plugins that are requried to build.
+				
+			- Maven Goals
+				- maven task :
+					- compile 	# Used to compile the source code 
+					- test 		# compile the source code and perform automated unit testing 
+					- package 	# compile, test and create artifacts(*.war/*.jar) in target folder of the workspace
+					- clean		# clean-up the target folder
+					
+			mvn - executable command 
+			
+				mvn compile 
+				
+				mvn test 
+				
+				mvn clean package 
+			
+			#git - executable command 
+			
+	Create CI Pipeline :::
+	
+pipeline {
+    agent { label 'slave1' }
+
+    stages {
+        stage('SCM-Checkout') {
+            steps {
+                echo 'Perform SCM Checkout'
+		git 'https://github.com/SA-DevOps-Cloud/java-mvn-springbootapp.git'
+            }
+        }
+        stage('Application Build ') {
+		agent {label slave2}
+            steps {
+                echo 'Build the Application - Compile and Create Artifacts'
+				sh 'mvn clean package '
+            }
+        }
+    }
+}
+		
+	 Configure Tomcat Server to automate deployments
+
+
+		Jenkins_Master (VM) 			- Jenkins Pipeline Creation 		
+			Jenkins_Slave_Node (VM) 	- Java Application Build 
+			
+		QA_Test_Server (VM)				- Deploy/Run the Application for QA Testing 
+
+	Create CI/CD Pipeline :::
+	
+pipeline {
+    agent any
+
+    stages {
+        stage('SCM-Checkout') {
+            steps {
+                echo 'Perform SCM Checkout'
+            }
+        }
+        stage('Application Build ') {
+            steps {
+                echo 'Build the Application - Compile and Create Artifacts'
+            }
+        }
+        stage('Deploy Artifacts to QA Environment') {
+            steps {
+                echo 'Deploy to QA'
+            }
+        }
+        stage('Deploy Artifacts to UAT Environment') {
+            steps {
+                echo 'Deploy to UAT'
+            }
+        }
+		
+        stage('Deploy Artifacts to PROD Environment') {
+            steps {
+                echo 'Deploy to PROD'
+            }
+        }
+    }
+}
