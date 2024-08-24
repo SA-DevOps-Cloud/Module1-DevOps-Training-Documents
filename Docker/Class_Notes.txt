@@ -1,0 +1,106 @@
+~~~~~~~~~~~~~~~~~~~~~~~
+Day 11: 24th Aug. 2024
+~~~~~~~~~~~~~~~~~~~~~~~	
+
+Containerization using Docker :::
+
+	- Containerization is a process of packaging the application along with its dependencies.
+	
+	
+Intro. to Containers ::
+
+	Virtual Machine 
+	
+		- VMs are considered as Hardware level Virtualization 
+		- VMs are created using the Hypervisor
+		- VMs are used to run the Operating System 
+		- VMs Consume More space and time to start 
+		- VMs will continue to run, even if there is no active task
+
+	Containers ::
+	
+		- Containers are considered as OS Level Virtualization 
+		- Containers are created using the Container Engine
+		- Containers are used to run the Applications/Tasks. Not Operating System 
+		- Containers Consume Less space and time to start 
+		- Containers will got to exit state immediately, if there is no active task
+		- Containers will be executed in an isolated address space.
+			- Kernel - Core of the Operating System
+				- Namespaces 
+				- Control Group -  CGroup
+				
+		- Using Containers we can reduce the no. of VMs
+				
+	Working with Docker :::
+		
+	Terminologies ::
+
+		Container Engine 
+			- Is used to Create and manage the Container Images and Containers.
+		
+		Container Images 
+			- It is a static file, that define the properties of Container 
+			- Images are non-executable 
+			- It composed of various level 
+			- These levels are created using Dockerfile Instructions
+		
+		Container 
+			- Containers are the executable unit of Container Image 
+		
+		Container Registry 
+			- Used to Manage and version control the Container Images. 
+			- Eg.: dockerhub 
+			
+		Container Repositories
+			- These are subset of Container Registry
+					
+					
+	
+	Containers :::
+	
+		Infra-Structure Management Perspective ::
+		
+			Jenkins_Master (VM)		-> Create Jenkins Project and schedule
+				Jenkins_Slave1(VM)	-> Java app build 
+				Jenkins_Slave2(VM)	-> Python app build 
+				Jenkins_Slave3(VM)  -> C#.Net App build 
+				Jenkins_Slave4(VM)  -> Ruby
+				Jenkins_Slave5(VM)  -> NodeJS/Angular
+				
+			Safe the Infra-Structure Cost ::
+			
+			Recommend Containers ::
+				Jenkins_Master (VM)				-> Create Jenkins Project and schedule
+					Jenkins_Slave1-BS-(VM)	
+						Install Container Engine(Docker)
+							C1 -> Java app build 
+							C2 -> Python app build
+							C3 -> C#.Net App build
+							C4 -> Ruby
+							C5 -> NodeJS/Angular
+
+		Developers/Deployment Perspective :: Used for Micro-Service Based Application Deployments
+		
+			Create Source Code :
+				Build -> compile and create artifacts mywebapp_login_svc1.war
+				
+					Run the mywebapp_login_svc1.war and test it.
+						- jdk11,tomcat8.5 --> test successful
+						
+				Create Application Image(mywebapp_login_svc1.war,jdk11,tomcat8.5) -- mywebapp_login_svc1_img
+				
+				
+				- Containerization is a process of packaging the application along with its dependencies.				
+
+
+				Publish the application image to Container Registry 
+					
+			Deployed mywebapp_login_svc1.war to QA_Server 
+			
+			QA_Server(VM) :
+				Container Engine 
+					C1 - mywebapp_login_svc1_img
+				
+	
+Next :::		
+		Working with Containers 
