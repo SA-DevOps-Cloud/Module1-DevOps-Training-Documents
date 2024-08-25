@@ -106,3 +106,27 @@ chmod 600 /home/devopsadmin/.ssh/*
 
 Login to Jenkins - Manage Jenkins - Attach the Slave Node to jenkins Master
 
+#####################Install TOMCAT Application Server on Ubuntu :::
+
+
+Install Tomcat ::  https://tomcat.apache.org/download-80.cgi
+
+sudo -i
+apt update -y
+apt-get install default-jdk -y
+java --version
+cd /opt/
+wget https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.99/bin/apache-tomcat-8.5.99.tar.gz
+tar -xvzf /opt/apache-tomcat-8.5.99.tar.gz
+mv apache-tomcat-8.5.99 tomcat
+cd tomcat/bin/
+./startup.sh			# Used to Start the Tomcat Server 
+
+
+
+
+Open web browser :
+
+http://<Public_IP_Address>:8080/
+
+E.g.: http://13.127.8.53:8080/
