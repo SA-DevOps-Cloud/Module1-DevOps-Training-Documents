@@ -104,3 +104,252 @@ Intro. to Containers ::
 	
 Next :::		
 		Working with Containers 
+
+
+~~~~~~~~~~~~~~~~~~~~~~~
+Day 12: 25th Aug. 2024
+~~~~~~~~~~~~~~~~~~~~~~~	
+
+
+Terminologies ::
+
+	Container Engine 
+		- Is used to Create and manage the Container Images and Containers.
+	
+	Container Images 
+		- It is a static file, that define the properties of Container 
+		- Images are non-executable 
+		- It composed of various level 
+		- These levels are created using Dockerfile Instructions
+	
+	Container 
+		- Containers are the executable unit of Container Image 
+	
+	Container Registry 
+		- Used to Manage and version control the Container Images. 
+		- Eg.: dockerhub 		https://hub.docker.com/
+		
+		github -- src_code repos 
+		dockerhub -- container image repo
+		
+		
+	Container Repositories
+		- These are subset of Container Registry
+		
+		
+Working with Containers ::
+
+	Install Container Engine :::::
+		- Docker Container Engine 
+		
+	Use Docker Cli to interact with the Container Engine and Working with Containers
+
+	Docker Cli Command ::::
+	
+	docker --version 
+	
+	docker images 		# Get the list of images 
+	
+	docker ps 			# Get the list of active/running Containers
+	
+	docker ps -a		# Get the list of all Containers 
+	
+	docker pull			# Download an Image from dockerhub to local machine 
+	
+	docker run 			# Create and run the container based on the image 
+	
+	Modes of Container Execution :
+	
+		Foreground/Attached Mode :			# Default 
+		
+			docker run <image_name>		
+
+			docker run centos sleep 20
+	
+		Background/Detached Mode :
+		
+			docker run -d centos sleep 20
+						
+		Interactive Mode :
+		
+			docker run -it centos bash
+			
+	
+	docker stop <container_id>
+	
+	docker start <container_id> 
+	
+	docker exec -it <container_id> bash			# Login to the running container 
+		
+	docker rm <container_id>		# Remove/Delete the container 
+	
+	docker rmi <image_name> 		# Remove/Delete the Image 
+					
+	
+	
+	Port Mapping/Bind :::
+	
+		- It is used to Map/Bind the Host Port with the Container Port.
+		- To Expose the Container to Internet
+		
+		
+		Front_End Layer 		C1 
+		
+		Application Layer 		C2 
+		
+		Back_End/DBase Layer 	C3 
+		
+		Tomcat ::: 
+		
+		docker run -it -p 8089:8080 tomcat:8.0
+
+
+		-p <host_port>:<container_port> 
+		
+		
+		<external_IP_Addr>:<host_port>
+		
+		docker run -it -p 8088:8080 tomcat:8.0
+		
+	Docker Volumes :::
+	
+		Used to Maintain the persistant data/volume 
+		
+		Container :
+		
+		- Stateless Application 
+			- These applications will not have any trace of execution 
+			
+		- Stateful Applications
+			- These applications will leave some trace(logs/report) of execution 
+			
+	
+	Create Docker Images :
+	
+		Docker Commit :
+			
+			- To Create an image based on the existing container reference 
+			
+			Syntax:
+				docker commit <container_id> <dockerhub_repo_name>/<New_Image_Name>:<tag>
+			
+				docker commit fae1e7611639 loksaieta/sa-wkend-do:v1.0
+		
+		Docker Build :
+		
+			- To Create/Build a image from the scratch using Dockerfile 
+			
+			Syntax:
+				docker build -t <dockerhub_repo_name>/<New_Image_Name>:<tag> .    # '.' denotes the Dockerfile reference.
+				
+		
+			vi Dockerfile 
+			
+			FROM ubuntu 
+			RUN apt update -y
+			RUN apt install git -y 
+			
+			
+			
+			Dockerfile Instructions ::
+			
+			FROM 	# Identify the Base Image 
+			
+			RUN 	# To run the package 
+			
+			COPY 	# COPY the files from Host Machine to Container Volume
+			
+			CP 		# COPY the files within the Container Volumes
+			
+			ENV 	# Set the Environment Variable 
+				
+			WORKDIR # Set the Current Working Directory  
+			
+			ADD 	# COPY the files from Host Machine as well from URL to Container Volume
+			
+			EXPOSE 	# Define the container port
+			
+			CMD 	# To set the start-up task/command to container.
+					# Can change the command at run time
+			
+			ENTRYPOINT # To set the start-up task/command to container.
+			           # Cannot change the command at run time
+			
+			
+		Publish the Container Images to Dockerhub Container Registry ::
+		
+			Login to Dockerhub Registry using Docker cli 
+			
+				docker login -u ladfasdfasdf
+				
+				adsdfasdfasdr0
+			
+			
+			
+		Developer create source code 
+			
+		Commit the changes to SCM 
+			
+			Pipeline :
+			
+			SCM_Checkout 
+			
+			Application Build 
+
+			Image Build 
+			
+			Login to Container Registry 
+			
+			Push that image to container registry
+			
+			Deploy to Target Environments (Using Kubernetes)
+			
+			
+		How to ensure high availability of container ????
+		
+		
+	Container Orchestration Tools :
+	
+		Docker Compose 
+			- Used to run muliple containers as a service 
+			
+			- Create a Yaml file that defines the properties of the service 
+			
+
+			Front_End Layer 		C1.1,c1.2,c1.3 
+			
+			Application Layer 		C2.1,c2.2,c2.3
+			
+			Back_End/DBase Layer 	C3.1,c3.2,c3.3
+				Docker-Compose up / down 
+	
+		
+		Docker Swarm (Open-Source)
+		
+			- It Container Orchestration Tool used to orchetrate the containers 
+			- It is used only for Docker Containers 
+			- It is used only for the limit volume of application services 
+			- Create Replicas of containers to ensure high availability.
+			- Not possible to auto-scale 
+			- It will not support Load Balancing
+				
+			
+		Kubernetes 	(Open-Source)
+		
+			- Manifest file 			=== Docker Compose 
+				- Create a Yaml/Json file that defines the properties of the service/Containers 
+				
+			- It Container Orchestration Tool used to orchetrate the containers 
+			- It is used deploy unlimited volume of application services 
+			- Create Replicas of containers to ensure high availability.
+			- Supports Auto-scale 
+			- Support Load Balancing
+					
+					
+		AWS 		---> ECS/ECR/EKS
+		
+		AZURE 		---> ACS/ACR/AKS
+		
+		GCP 		---> GCE/GCR/GKE
+				
+		
